@@ -1,6 +1,6 @@
 # Movies app
 
-A new Flutter project.Advanced flutter roject
+Advanced flutter project
 
 ## Getting Started
 
