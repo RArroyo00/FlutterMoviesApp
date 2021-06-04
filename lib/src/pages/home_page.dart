@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    moviesProvider.getTrending();
     return Scaffold(
       appBar: AppBar(
         title: Text('New movies'),
@@ -22,7 +23,10 @@ class HomePage extends StatelessWidget {
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [_createHeaderSwiper(), _createFooterSlider(context)],
+          children: [
+            _createHeaderSwiper(),
+            _createFooterSlider(context),
+          ],
         ),
       ),
     );
@@ -62,6 +66,24 @@ class HomePage extends StatelessWidget {
               style: Theme.of(context).textTheme.headline6,
             ),
           ),
+          StreamBuilder(
+              stream: moviesProvider.trendingStream,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return HorizontalMovieSlider(
+                    moviesList: snapshot.data,
+                    endScrollAction: moviesProvider.getTrending,
+                  );
+                } else {
+                  return Container(
+                    height: MediaQuery.of(context).size.height * .25,
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
+              }),
+          /*
           FutureBuilder(
               future: moviesProvider.getTrending(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -75,7 +97,7 @@ class HomePage extends StatelessWidget {
                     ),
                   );
                 }
-              }),
+              }),*/
         ],
       ),
     );

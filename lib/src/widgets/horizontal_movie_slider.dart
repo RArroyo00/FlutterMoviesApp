@@ -4,21 +4,68 @@ import 'package:movies/src/models/movie_model.dart';
 
 class HorizontalMovieSlider extends StatelessWidget {
   final List<Movie> moviesList;
-  HorizontalMovieSlider({@required this.moviesList});
+  final Function endScrollAction;
+
+  HorizontalMovieSlider(
+      {@required this.moviesList, @required this.endScrollAction});
 
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
 
+    final _pageController = new PageController(
+      initialPage: 1,
+      viewportFraction: .3,
+    );
+
+    _pageController.addListener(() {
+      if (_pageController.position.pixels >=
+          _pageController.position.maxScrollExtent - 200) {
+        endScrollAction();
+      }
+    });
+
     return Container(
       height: _screenSize.height * .25,
-      child: PageView(
-        pageSnapping: false,
-        controller: PageController(
-          initialPage: 1,
-          viewportFraction: .3,
-        ),
-        children: _cardList(context),
+      child: PageView.builder(
+          pageSnapping: false,
+          controller: _pageController,
+          itemCount: moviesList.length, //IMPORTANT
+          itemBuilder: (context, i) =>
+              _createTrendingCard(context, moviesList[i])),
+    );
+  }
+
+  Widget _createTrendingCard(BuildContext context, Movie movie) {
+    return Container(
+      margin: EdgeInsets.only(right: 8),
+      child: Column(
+        children: [
+          Card(
+            clipBehavior: Clip.antiAlias,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            elevation: 3,
+            child: Column(
+              children: [
+                FadeInImage(
+                  height: 155,
+                  image: NetworkImage(movie.getPosterPath()),
+                  placeholder: AssetImage('assets/img/loading.gif'),
+                  fit: BoxFit.cover,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Text(
+                    movie.title,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
