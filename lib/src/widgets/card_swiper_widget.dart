@@ -17,12 +17,17 @@ class CardSwiper extends StatelessWidget {
           itemWidth: _screenSize.width * 0.7,
           itemHeight: _screenSize.height * 0.6,
           itemBuilder: (BuildContext context, int index) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
-                image: NetworkImage(movies[index].getPosterPath()),
-                placeholder: AssetImage('assets/img/loading.gif'),
-                fit: BoxFit.fitHeight,
+            return Card(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              elevation: 3,
+              child: ClipRRect(
+                child: FadeInImage(
+                  image: NetworkImage(movies[index].getPosterPath()),
+                  placeholder: AssetImage('assets/img/loading.gif'),
+                  fit: BoxFit.fitHeight,
+                ),
               ),
             );
           },
