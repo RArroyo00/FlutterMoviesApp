@@ -15,7 +15,9 @@ class HomePage extends StatelessWidget {
         title: Text('New movies'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              // showSearch(context: context, delegate: SearchDelegate())
+            },
             icon: Icon(Icons.search),
           )
         ],
@@ -61,9 +63,19 @@ class HomePage extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.all(8),
-            child: Text(
-              'Trending',
-              style: Theme.of(context).textTheme.headline6,
+            child: Row(
+              children: [
+                Text(
+                  'Trending',
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+                SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  child: Divider(),
+                ),
+              ],
             ),
           ),
           StreamBuilder(
