@@ -45,6 +45,14 @@ class Movies {
 }
 
 class Movie {
+  String _uuid;
+
+  String get uuid => _uuid;
+
+  set uuid(String uuid) {
+    _uuid = uuid;
+  }
+
   bool adult;
   String backdropPath;
   List<int> genreIds;
@@ -117,6 +125,14 @@ class Movie {
       return 'https://th.bing.com/th/id/R13348c2f20e67df7c41f02508c3db817?rik=UimwEaESh%2fsMKg&pid=ImgRaw';
     } else {
       return "https://image.tmdb.org/t/p/w500/$posterPath";
+    }
+  }
+
+  String getBackdroPath() {
+    if (posterPath == null) {
+      return 'https://th.bing.com/th/id/R13348c2f20e67df7c41f02508c3db817?rik=UimwEaESh%2fsMKg&pid=ImgRaw';
+    } else {
+      return "https://image.tmdb.org/t/p/w500/$backdropPath";
     }
   }
 }
