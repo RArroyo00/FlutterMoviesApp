@@ -52,6 +52,15 @@ class MoviesProvider {
     return response;
   }
 
+  Future<List<Movie>> moviesSearch(String query) async {
+    final uri = Uri.https(_path, '3/search/movie', {
+      'api_key': Constants.apiKey,
+      'language': Constants.lang,
+      'query': query
+    });
+    return await _processResponse(uri);
+  }
+
   Future<List<Movie>> _processResponse(Uri uri) async {
     final response = await http.get(uri);
     final decodedResponse = json.decode(response.body);
