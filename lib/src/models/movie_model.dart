@@ -45,14 +45,7 @@ class Movies {
 }
 
 class Movie {
-  String _uuid;
-
-  String get uuid => _uuid;
-
-  set uuid(String uuid) {
-    _uuid = uuid;
-  }
-
+  String uuid;
   bool adult;
   String backdropPath;
   List<int> genreIds;

@@ -26,7 +26,7 @@ class HorizontalMovieSlider extends StatelessWidget {
     });
 
     return Container(
-      height: _screenSize.height * .25,
+      height: _screenSize.height * .32,
       child: PageView.builder(
           pageSnapping: false,
           controller: _pageController,
@@ -47,7 +47,7 @@ class HorizontalMovieSlider extends StatelessWidget {
         child: Column(
           children: [
             FadeInImage(
-              height: 155,
+              height: 180,
               image: NetworkImage(movie.getPosterPath()),
               placeholder: AssetImage('assets/img/loading.gif'),
               fit: BoxFit.cover,
@@ -66,7 +66,7 @@ class HorizontalMovieSlider extends StatelessWidget {
     );
 
     final movieCardContainer = Container(
-      margin: EdgeInsets.only(right: 8),
+      margin: EdgeInsets.only(right: 4),
       child: Column(
         children: [
           GestureDetector(

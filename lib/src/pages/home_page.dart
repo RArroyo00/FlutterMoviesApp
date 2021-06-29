@@ -27,13 +27,15 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _createHeaderSwiper(),
-            _createFooterSlider(context),
-          ],
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _createHeaderSwiper(),
+              _createFooterSlider(context),
+            ],
+          ),
         ),
       ),
     );

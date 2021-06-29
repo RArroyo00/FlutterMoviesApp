@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:movies/src/models/movie_model.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:movies/src/providers/movies_provider.dart';
 
 class MovieSearchDelegate extends SearchDelegate {
