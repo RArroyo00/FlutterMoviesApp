@@ -1,4 +1,4 @@
-package com.example.movies
+package com.rulo.moviesplayground
 
 import io.flutter.embedding.android.FlutterActivity
 
